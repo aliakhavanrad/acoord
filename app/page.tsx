@@ -7,6 +7,7 @@ import TileLayer from 'ol/layer/Tile.js';
 
 import { useEffect, useRef } from 'react';
 
+// @refresh reset
 export default function Home() {
 
   const mapRef = useRef<HTMLDivElement>(null);

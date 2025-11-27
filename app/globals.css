@@ -35,3 +35,12 @@ body {
   .ol-zoom-in{
     border-radius: 4px 8px 0px 0px !important;
   }
+  
+  .ol-zoom-out{
+    border-radius: 0px 0px  4px 8px !important;
+  }
+
+
+  .ol-zoom-in:hover, .ol-zoom-out:hover{
+      background-color: #222222 !important;
+  }
