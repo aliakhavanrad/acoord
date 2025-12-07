@@ -24,6 +24,35 @@ jobs:
             - name: Build project
               run: npm run build
 
+            - name: Create optimized deployment
+              run: |
+                  # Create deployment directory
+                  mkdir -p deploy
+
+                  # Find and copy build output
+                  if [ -d "./dist" ]; then
+                    cp -r ./dist/* deploy/
+                    echo "Using dist/ directory"
+                  elif [ -d "./out" ]; then
+                    cp -r ./out/* deploy/
+                    echo "Using out/ directory"
+                  elif [ -d "./build" ]; then
+                    cp -r ./build/* deploy/
+                    echo "Using build/ directory"
+                  else
+                    echo "No build directory found!"
+                    exit 1
+                  fi
+
+                  # Count files
+                  file_count=$(find ./deploy -type f | wc -l)
+                  echo "Total files to deploy: $file_count"
+
+                  # If too many files, consider creating archive
+                  if [ $file_count -gt 100 ]; then
+                    echo "Many files detected. Consider optimization."
+                  fi
+
             - name: Deploy to Plesk
               uses: SamKirkland/FTP-Deploy-Action@v4.3.6
               with:
@@ -32,6 +61,7 @@ jobs:
                   password: ${{ secrets.FTP_PASSWORD }}
                   local-dir: ./out/
                   server-dir: /app.acoord.ir/
-                  timeout: 180000
-                  ftp-passive: true
-                  delete-extra: true
+                  timeout: 300000
+                  security: passive
+                  dangerous-clean-slate: false
+                  log-level: verbose
