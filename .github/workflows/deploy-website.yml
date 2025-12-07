@@ -31,5 +31,5 @@ jobs:
                   username: ${{ secrets.FTP_USERNAME }}
                   password: ${{ secrets.FTP_PASSWORD }}
                   local-dir: ./dist/
-                  server-dir: /app.acoord.ir
+                  server-dir: /app.acoord.ir/
                   dangerous-clean-slate: true
