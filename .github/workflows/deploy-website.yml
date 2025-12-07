@@ -32,4 +32,6 @@ jobs:
                   password: ${{ secrets.FTP_PASSWORD }}
                   local-dir: ./out/
                   server-dir: /app.acoord.ir/
-                  dangerous-clean-slate: true
+                  timeout: 180000
+                  ftp-passive: true
+                  delete-extra: true
