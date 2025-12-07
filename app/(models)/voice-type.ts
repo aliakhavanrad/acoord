@@ -1,0 +1,1 @@
+export type VoiceType = "Recorded Voice" | "";
