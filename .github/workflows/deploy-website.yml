@@ -62,6 +62,6 @@ jobs:
                   local-dir: ./out/
                   server-dir: /app.acoord.ir/
                   timeout: 300000
-                  security: passive
+                  security: loose
                   dangerous-clean-slate: false
                   log-level: verbose
