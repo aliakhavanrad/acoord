@@ -4,7 +4,6 @@ import Map from "ol/Map.js";
 import View from "ol/View.js";
 import OSM from "ol/source/OSM.js";
 import TileLayer from "ol/layer/Tile.js";
-
 import { useEffect, useMemo, useRef } from "react";
 import soundService from "../(services)/soundService";
 import { Feature } from "ol";
