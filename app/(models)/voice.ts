@@ -1,16 +1,17 @@
-import { VoiceType } from "./voice-type";
+import { VoiceType } from './voice-type';
 
 export interface Voice {
-    VoiceID: string,
-    Name: string,
-    VoiceType: VoiceType,
-    Longitude: number,
-    Latitude: number,
-    VoicePath: string,
-    Uploader: string,
-    Genre?: string,
-    Description?: string,
-    Mood?: string,
-    TimeToListen?: string,
-    VoiceLength?: string,
+    voiceID: string;
+    name: string;
+    voiceType: VoiceType;
+    longitude: number;
+    latitude: number;
+    voicePath: string;
+    uploader?: string;
+    genre?: string;
+    description?: string;
+    mood?: string;
+    timeToListen?: string;
+    voiceLength?: string;
+    profile?: string;
 }
