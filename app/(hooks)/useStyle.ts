@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useCallback } from 'react';
-import type { Style } from 'ol/style';
-import Feature from 'ol/Feature';
+import { useCallback } from "react";
+import type { Style } from "ol/style";
+import Feature from "ol/Feature";
 
 export const useStyle = () => {
     /**
@@ -14,7 +14,9 @@ export const useStyle = () => {
     const setPointStyle = useCallback((olFeature: Feature, olStyle: Style) => {
         olFeature.setStyle((feature, resolution) => {
             if (olStyle && olStyle.getImage()) {
-                olStyle.getImage()?.setScale(1 / Math.pow(resolution as number, 1 / 6));
+                olStyle
+                    .getImage()
+                    ?.setScale(1 / Math.pow(resolution as number, 1 / 8));
             }
             return olStyle;
         });

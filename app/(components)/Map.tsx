@@ -1,19 +1,20 @@
-'use client';
+"use client";
 
-import Map from 'ol/Map.js';
-import View from 'ol/View.js';
-import OSM from 'ol/source/OSM.js';
-import TileLayer from 'ol/layer/Tile.js';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Feature } from 'ol';
-import { Geometry, Point } from 'ol/geom';
-import { fromLonLat, toLonLat } from 'ol/proj';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource, { VectorSourceEvent } from 'ol/source/Vector';
-import Draw from 'ol/interaction/Draw';
-import { Style, Icon } from 'ol/style';
-import { useSound, useStyle, useSelect } from '../(hooks)';
-import { Voice } from '../(models)';
+import Map from "ol/Map.js";
+import View from "ol/View.js";
+import OSM from "ol/source/OSM.js";
+import TileLayer from "ol/layer/Tile.js";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Feature } from "ol";
+import { Geometry, Point } from "ol/geom";
+import { fromLonLat, toLonLat } from "ol/proj";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource, { VectorSourceEvent } from "ol/source/Vector";
+import Draw from "ol/interaction/Draw";
+import { Style, Icon } from "ol/style";
+import { useSound, useStyle, useSelect } from "../(hooks)";
+import { Voice } from "../(models)";
+import { PlayerPanel } from "./PlayerPanel";
 
 // Map constants
 const MAP_START_CENTER = [53, 33];
@@ -22,18 +23,18 @@ const MAP_START_ZOOM = 2;
 // Define styles for different voice types
 const getVoiceTypeStyle = (voiceType: string): Style => {
     const iconMap: { [key: string]: string } = {
-        'Recorded Voice': '/assets/Icons/recordedVoiceIcon.png',
-        'Music': '/assets/Icons/musicIcon.png',
-        'Podcast': '/assets/Icons/podcastIcon.png',
+        "Recorded Voice": "/assets/Icons/recordedVoiceIcon.png",
+        Music: "/assets/Icons/musicIcon.png",
+        Podcast: "/assets/Icons/podcastIcon.png",
     };
 
     return new Style({
         image: new Icon({
             anchor: [0.5, 1],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            crossOrigin: 'Anonymous',
-            src: iconMap[voiceType] || '/assets/Icons/recordedVoiceIcon.png',
+            anchorXUnits: "fraction",
+            anchorYUnits: "pixels",
+            crossOrigin: "Anonymous",
+            src: iconMap[voiceType] || "/assets/Icons/recordedVoiceIcon.png",
         }),
     });
 };
@@ -42,10 +43,10 @@ const getVoiceTypeStyle = (voiceType: string): Style => {
 const uploadStyle = new Style({
     image: new Icon({
         anchor: [0.5, 1],
-        anchorXUnits: 'fraction',
-        anchorYUnits: 'pixels',
-        crossOrigin: 'Anonymous',
-        src: '/assets/Icons/recordedVoiceIcon.png',
+        anchorXUnits: "fraction",
+        anchorYUnits: "pixels",
+        crossOrigin: "Anonymous",
+        src: "/assets/Icons/recordedVoiceIcon.png",
     }),
 });
 
@@ -55,12 +56,19 @@ export default function MapComponent() {
     const [selectedSound, setSelectedSound] = useState<Voice | null>(null);
     const [isPlayerPanelVisible, setIsPlayerPanelVisible] = useState(false);
     const [isUploadFormVisible, setIsUploadFormVisible] = useState(false);
-    const [clickedLocation, setClickedLocation] = useState<number[] | null>(null);
+    const [clickedLocation, setClickedLocation] = useState<number[] | null>(
+        null
+    );
 
     // Use custom hooks
     const { voices, getAllAcceptedVoices } = useSound();
     const { setPointStyle } = useStyle();
-    const { select, selectedSound: selectedSoundFromSelect, init, clearSelection } = useSelect();
+    const {
+        select,
+        selectedSound: selectedSoundFromSelect,
+        init,
+        clearSelection,
+    } = useSelect();
 
     // Create map
     const map = useMemo(() => {
@@ -88,7 +96,6 @@ export default function MapComponent() {
     const drawVector = useMemo(
         () =>
             new VectorLayer({
-                
                 source: drawSource,
                 style: uploadStyle,
             }),
@@ -98,7 +105,7 @@ export default function MapComponent() {
     const draw = useMemo(() => {
         return new Draw({
             source: drawSource,
-            type: 'Point',
+            type: "Point",
             style: uploadStyle,
         });
     }, [drawSource]);
@@ -161,7 +168,7 @@ export default function MapComponent() {
                     source.addFeature(feature);
                 }
             } catch (error) {
-                console.error('Failed to load voices:', error);
+                console.error("Failed to load voices:", error);
             }
         }
 
@@ -172,10 +179,10 @@ export default function MapComponent() {
     // useEffect(() => {
     //     const handleAddFeature = (evt: VectorSourceEvent<Feature<Geometry>>) => {
     //         const feature = evt.feature;
-    //         if (!feature) { 
-    //             return;                
+    //         if (!feature) {
+    //             return;
     //         }
-            
+
     //         const coords = feature?.getGeometry()?.getCoordinates();
     //         const lonLat = toLonLat(coords);
 
@@ -202,7 +209,6 @@ export default function MapComponent() {
     const closePlayerPanel = () => {
         setIsPlayerPanelVisible(false);
     };
-
 
     // Recenter map
     const recenterMap = (
@@ -232,33 +238,11 @@ export default function MapComponent() {
             <div ref={mapRef} className="map-container" />
 
             {/* Player Panel */}
-            {isPlayerPanelVisible && selectedSound && (
-                <div className="player-panel">
-                    <button onClick={closePlayerPanel}>Close</button>
-                    <h3>{selectedSound.name}</h3>
-                    <p>Type: {selectedSound.voiceType}</p>
-                    <p>Description: {selectedSound.description}</p>
-                    <audio controls>
-                        <source src={selectedSound.voicePath} type="audio/mpeg" />
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            )}
-
-            {/* Upload Form Panel */}
-            {isUploadFormVisible && clickedLocation && (
-                <div className="upload-panel">
-                    <button onClick={closeUploadForm}>Close</button>
-                    <h3>Upload New Voice</h3>
-                    <p>Location: {clickedLocation[0].toFixed(4)}, {clickedLocation[1].toFixed(4)}</p>
-                    {/* Add your upload form here */}
-                </div>
-            )}
-
-            {/* Upload Button */}
-            <button className="upload-btn" onClick={activateUpload}>
-                {isUploadFormVisible ? 'Uploading...' : 'Upload Voice'}
-            </button>
+            <PlayerPanel
+                sound={isPlayerPanelVisible ? selectedSound : null}
+                onClosed={closePlayerPanel}
+                onClearSelection={clearSelection}
+            />
         </div>
     );
 }

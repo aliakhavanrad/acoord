@@ -1,0 +1,108 @@
+.playerPanel {
+    display: inline-block;
+    width: 190px;
+    background-image: url("/assets/Icons/playerBackground.png");
+    background-size: cover;
+    box-shadow: 0 0 10px #222222;
+    position: fixed;
+    left: 3%;
+    top: 30vh;
+    color: black;
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
+    border-radius: 15px;
+    border: black solid 5px;
+    overflow: hidden;
+    transition: height 0.5s;
+    z-index: 1000;
+    text-align: center;
+}
+
+.close {
+    display: inline-block;
+    background-image: url(/assets/Icons/close.png);
+    background-size: cover;
+    width: 13px;
+    height: 13px;
+    margin: 7px 7px 0px 0px;
+    cursor: pointer;
+}
+
+.toggleBtn {
+    display: inline-block;
+    background-size: cover;
+    width: 13px;
+    height: 13px;
+    margin: 7px 0px 0px 7px;
+    cursor: pointer;
+}
+
+.minBtn {
+    background-image: url(/assets/Icons/minimize.png);
+}
+
+.maxBtn {
+    background-image: url(/assets/Icons/maximize.png);
+}
+
+.playBtnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.playBtnProgressCircle {
+    display: inline-block;
+    width: 86px;
+    height: 86px;
+    border: #dddddd solid 2px;
+    border-radius: 45px;
+}
+
+.playPauseButton {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    margin: 6px;
+    cursor: pointer;
+}
+
+.playButton {
+    background-image: url(/assets/Icons/playButton.png);
+    background-size: cover;
+}
+
+.pauseButton {
+    background-image: url(/assets/Icons/pauseButton.png);
+    background-size: cover;
+}
+
+.musicName {
+    font-size: 0.7em;
+    font-weight: bold;
+    margin: 15px 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.uploaded {
+    font-size: 0.7em;
+    font-weight: bold;
+    margin: 10px 20px;
+}
+
+.description {
+    font-size: 0.7em;
+    margin: 20px 10px;
+    line-height: 1.5em;
+    height: 4.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+}
