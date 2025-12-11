@@ -107,7 +107,6 @@ export const useAuth = () => {
     const isLoggedIn = useCallback(() => {
         try {
             if (!currentUser?.loginDate) {
-                logout();
                 return false;
             }
 
@@ -122,9 +121,8 @@ export const useAuth = () => {
             console.log(ex);
         }
 
-        logout();
         return false;
-    }, [currentUser, logout]);
+    }, [currentUser]);
 
     return {
         currentUser,

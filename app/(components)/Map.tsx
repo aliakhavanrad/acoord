@@ -15,6 +15,8 @@ import { Style, Icon } from "ol/style";
 import { useSound, useStyle, useSelect } from "../(hooks)";
 import { Voice } from "../(models)";
 import { PlayerPanel } from "./PlayerPanel";
+import { Header } from "./Header";
+import { Legend } from "./Legend";
 
 // Map constants
 const MAP_START_CENTER = [53, 33];
@@ -236,6 +238,16 @@ export default function MapComponent() {
     return (
         <div className="map-wrapper">
             <div ref={mapRef} className="map-container" />
+
+            {/* Header */}
+            <Header
+                onSetFullExtent={recenterMap}
+                onGoToUserLocation={() => recenterMap()}
+                onActivateUpload={activateUpload}
+            />
+
+            {/* Legend */}
+            <Legend />
 
             {/* Player Panel */}
             <PlayerPanel
