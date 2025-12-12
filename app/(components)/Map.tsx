@@ -17,6 +17,9 @@ import { Voice } from "../(models)";
 import { PlayerPanel } from "./PlayerPanel";
 import { Header } from "./Header";
 import { Legend } from "./Legend";
+import { LoginModal } from "./Login";
+import { RegisterModal } from "./Register";
+import modalStyles from "./Modal.module.css";
 
 // Map constants
 const MAP_START_CENTER = [53, 33];
@@ -58,6 +61,8 @@ export default function MapComponent() {
     const [selectedSound, setSelectedSound] = useState<Voice | null>(null);
     const [isPlayerPanelVisible, setIsPlayerPanelVisible] = useState(false);
     const [isUploadFormVisible, setIsUploadFormVisible] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [clickedLocation, setClickedLocation] = useState<number[] | null>(
         null
     );
@@ -235,6 +240,30 @@ export default function MapComponent() {
         map.addInteraction(draw);
     };
 
+    // Modal handlers
+    const openLoginModal = () => {
+        setShowLoginModal(true);
+        setShowRegisterModal(false);
+    };
+
+    const closeLoginModal = () => {
+        setShowLoginModal(false);
+    };
+
+    const openRegisterModal = () => {
+        setShowRegisterModal(true);
+        setShowLoginModal(false);
+    };
+
+    const closeRegisterModal = () => {
+        setShowRegisterModal(false);
+    };
+
+    const handleRegisterSuccess = () => {
+        closeRegisterModal();
+        openLoginModal();
+    };
+
     return (
         <div className="map-wrapper">
             <div ref={mapRef} className="map-container" />
@@ -244,6 +273,7 @@ export default function MapComponent() {
                 onSetFullExtent={recenterMap}
                 onGoToUserLocation={() => recenterMap()}
                 onActivateUpload={activateUpload}
+                onOpenLoginModal={openLoginModal}
             />
 
             {/* Legend */}
@@ -255,6 +285,26 @@ export default function MapComponent() {
                 onClosed={closePlayerPanel}
                 onClearSelection={clearSelection}
             />
+
+            {/* Login Modal */}
+            {showLoginModal && (
+                <div className={modalStyles.modalBackdrop}>
+                    <LoginModal
+                        onClose={closeLoginModal}
+                        onOpenRegister={openRegisterModal}
+                    />
+                </div>
+            )}
+
+            {/* Register Modal */}
+            {showRegisterModal && (
+                <div className={modalStyles.modalBackdrop}>
+                    <RegisterModal
+                        onClose={closeRegisterModal}
+                        onOpenLogin={handleRegisterSuccess}
+                    />
+                </div>
+            )}
         </div>
     );
 }

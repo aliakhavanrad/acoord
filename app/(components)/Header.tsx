@@ -8,9 +8,10 @@ interface HeaderProps {
     onSetFullExtent?: () => void;
     onGoToUserLocation?: () => void;
     onActivateUpload?: () => void;
+    onOpenLoginModal?: () => void;
 }
 
-export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload }: HeaderProps) {
+export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload, onOpenLoginModal }: HeaderProps) {
     const { isLoggedIn, logout } = useAuth();
     const router = useRouter();
 
@@ -34,7 +35,7 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload }
     };
 
     const handleLogin = () => {
-        router.push('/login');
+        onOpenLoginModal?.();
     };
 
     const handleHelp = () => {
