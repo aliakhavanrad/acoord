@@ -17,8 +17,8 @@ import { Voice } from "../(models)";
 import { PlayerPanel } from "./PlayerPanel";
 import { Header } from "./Header";
 import { Legend } from "./Legend";
-import { LoginModal } from "./Login";
-import { RegisterModal } from "./Register";
+import LoginModal from "./Login";
+import RegisterModal from "./Register";
 import { UploadForm } from "./UploadForm";
 import modalStyles from "./Modal.module.css";
 

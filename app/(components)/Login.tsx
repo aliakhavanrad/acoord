@@ -10,7 +10,7 @@ interface LoginProps {
     onOpenRegister?: () => void;
 }
 
-export function LoginModal({ onClose, onOpenRegister }: LoginProps) {
+function LoginModal({ onClose, onOpenRegister }: LoginProps) {
     const { login, loading, error: authError } = useAuth();
 
     const [username, setUsername] = useState("");
@@ -182,3 +182,5 @@ export function LoginModal({ onClose, onOpenRegister }: LoginProps) {
         </div>
     );
 }
+
+export default LoginModal;
