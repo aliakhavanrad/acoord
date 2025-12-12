@@ -1,0 +1,219 @@
+.fullScreenContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.blurBackground {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 5;
+}
+
+.loginForm {
+  z-index: 15;
+  position: relative;
+  font-size: 12px;
+  font-weight: bold;
+  margin: auto;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.textCenter {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.textCenter h4 {
+  margin: 15px 0 0 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: 'Berlin Sans FB', Tahoma, Verdana, sans-serif;
+}
+
+.textCenter img {
+  display: block;
+  margin: 0 auto;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.colSm4 {
+  grid-column: 1;
+}
+
+.colSm8 {
+  grid-column: 2;
+}
+
+.formLabel {
+  font-size: 1.05em;
+  font-weight: bolder;
+  font-family: 'Berlin Sans FB', Tahoma, Verdana, sans-serif;
+}
+
+.formControl {
+  height: 30px;
+  font-size: 12px;
+  line-height: 30px;
+  padding: 0 8px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.formControl.isInvalid {
+  border-color: #dc3545;
+}
+
+.invalidFeedback {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btnPrimary,
+.btnDanger {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: 1;
+  transition: background-color 0.3s;
+}
+
+.btnPrimary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btnPrimary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnDanger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btnDanger:hover {
+  background-color: #c82333;
+}
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.alertDanger {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .loginForm {
+    max-width: 90%;
+    padding: 30px 20px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .colSm4,
+  .colSm8 {
+    grid-column: 1;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnDanger {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginForm {
+    max-width: 95%;
+    padding: 20px 15px;
+  }
+
+  .textCenter h4 {
+    font-size: 1.2em;
+  }
+
+  .textCenter img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .formLabel {
+    font-size: 0.95em;
+  }
+}

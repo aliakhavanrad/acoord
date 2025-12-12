@@ -41,6 +41,10 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload }
         router.push('/help');
     };
 
+    const handleAbout = () => {
+        router.push('/about');
+    };
+
     const handleActivateUpload = () => {
         onActivateUpload?.();
     };
@@ -68,7 +72,7 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload }
                     className={styles.headerImage}
                     src="/assets/Icons/i.png"
                     alt="about"
-                    onClick={() => openInNewTab('/about')}
+                    onClick={handleAbout}
                 />
 
                 <img

@@ -95,9 +95,12 @@ export const useAuth = () => {
                 );
 
                 if (!response.ok) {
-                    throw new Error(
-                        `Registration failed with status ${response.status}`
-                    );
+                    if (response.status === 406) {
+                        const message = "This username or phone number has been taken";
+                        setError(message);
+                        throw new Error(message);
+                    }
+                    throw new Error("User registration was not successful");
                 }
 
                 return await response.json();
