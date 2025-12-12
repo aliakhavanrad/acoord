@@ -19,6 +19,7 @@ import { Header } from "./Header";
 import { Legend } from "./Legend";
 import { LoginModal } from "./Login";
 import { RegisterModal } from "./Register";
+import { UploadForm } from "./UploadForm";
 import modalStyles from "./Modal.module.css";
 
 // Map constants
@@ -52,6 +53,7 @@ const uploadStyle = new Style({
         anchorYUnits: "pixels",
         crossOrigin: "Anonymous",
         src: "/assets/Icons/recordedVoiceIcon.png",
+        height: 12,
     }),
 });
 
@@ -183,28 +185,33 @@ export default function MapComponent() {
     }, [vectorLayer, getAllAcceptedVoices, setPointStyle]);
 
     // Handle drawn features (upload location)
-    // useEffect(() => {
-    //     const handleAddFeature = (evt: VectorSourceEvent<Feature<Geometry>>) => {
-    //         const feature = evt.feature;
-    //         if (!feature) {
-    //             return;
-    //         }
+    useEffect(() => {
+        const handleAddFeature = (
+            evt: VectorSourceEvent<Feature<Geometry>>
+        ) => {
+            const feature = evt.feature;
+            if (!feature) {
+                return;
+            }
+            debugger;
+            const geometry = feature?.getGeometry();
+            if (!(geometry instanceof Point)) return;
 
-    //         const coords = feature?.getGeometry()?.getCoordinates();
-    //         const lonLat = toLonLat(coords);
+            const coords = geometry.getCoordinates();
+            const lonLat = toLonLat(coords);
 
-    //         setClickedLocation(lonLat);
-    //         setIsPlayerPanelVisible(false);
-    //         setIsUploadFormVisible(true);
-    //         map.removeInteraction(draw);
-    //     };
+            setClickedLocation(lonLat);
+            setIsPlayerPanelVisible(false);
+            setIsUploadFormVisible(true);
+            map.removeInteraction(draw);
+        };
 
-    //     drawSource.on('addfeature', handleAddFeature);
+        drawSource.on("addfeature", handleAddFeature);
 
-    //     return () => {
-    //         drawSource.un('addfeature', handleAddFeature);
-    //     };
-    // }, [drawSource, map, draw]);
+        return () => {
+            drawSource.un("addfeature", handleAddFeature);
+        };
+    }, [drawSource, map, draw]);
 
     // Close upload form
     const closeUploadForm = () => {
@@ -248,6 +255,10 @@ export default function MapComponent() {
 
     const closeLoginModal = () => {
         setShowLoginModal(false);
+    };
+
+    const closeUploadModal = () => {
+        setIsUploadFormVisible(false);
     };
 
     const openRegisterModal = () => {
@@ -316,6 +327,26 @@ export default function MapComponent() {
                     <RegisterModal
                         onClose={closeRegisterModal}
                         onOpenLogin={handleRegisterSuccess}
+                    />
+                </div>
+            )}
+
+            {/* Upload Form */}
+            {isUploadFormVisible && (
+                <div
+                    className={modalStyles.modalBackdrop}
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            closeUploadForm();
+                        }
+                    }}
+                >
+                    <UploadForm
+                        clickedLocation={clickedLocation}
+                        onClose={() => {
+                            setIsUploadFormVisible(false);
+                            drawSource.clear();
+                        }}
                     />
                 </div>
             )}

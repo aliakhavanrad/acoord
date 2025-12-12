@@ -1,0 +1,367 @@
+.uploadForm {
+  padding: 10px;
+  background: url('/assets/Icons/playerBackground.png');
+  background-size: cover;
+  box-shadow: 0 0 10px #222222;
+  width: 400px;
+  position: fixed;
+  top: 150px;
+  right: 3%;
+  font-family: Tahoma, Verdana, Geneva, sans-serif;
+  font-size: 0.8em;
+  color: black;
+  border-radius: 15px;
+  border: black solid 5px;
+  z-index: 800;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.closeButton:hover {
+  color: #000;
+}
+
+.step {
+  margin-bottom: 15px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.label {
+  margin: 0;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: Tahoma, Verdana, Geneva, sans-serif;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.fileInput {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fileName {
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.radioGroup,
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radioOption,
+.checkboxOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radioOption input,
+.checkboxOption input {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.radioOption label,
+.checkboxOption label {
+  cursor: pointer;
+  margin: 0;
+  font-size: 0.95em;
+}
+
+.optionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Voice Recorder */
+.voiceRecorderContainer {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.playTimeContainer {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.micButton {
+  display: inline-block;
+  width: 33px;
+  height: 33px;
+  border: none;
+  background: url('/assets/Icons/mic.png');
+  background-size: cover;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.stopButton {
+  background: url('/assets/Icons/stopButton.png') !important;
+  background-size: cover !important;
+}
+
+.recordedTimeContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+  padding: 2px 6px;
+  flex: 1;
+}
+
+.removeRecordButton {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('/assets/Icons/close.png');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.recordedTimeContainer label {
+  font-size: 0.9em;
+  margin: 0;
+  white-space: nowrap;
+  font-family: monospace;
+}
+
+.playButton {
+  display: inline-block;
+  width: 33px;
+  height: 33px;
+  border: none;
+  background: url('/assets/Icons/playButton.png');
+  background-size: cover;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.pauseButton {
+  background: url('/assets/Icons/pauseButton.png') !important;
+  background-size: cover !important;
+}
+
+/* Progress Bar */
+.progressContainer {
+  width: 100%;
+  height: 25px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #28a745;
+  background: linear-gradient(90deg, #28a745, #20c997);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9em;
+  transition: width 0.3s ease;
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  height: 60px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: Tahoma, Verdana, Geneva, sans-serif;
+  font-size: 0.95em;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Form Footer */
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.backButton,
+.nextButton,
+.uploadButton {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+
+.backButton,
+.nextButton {
+  background-color: #dddddd;
+  color: #333;
+  flex: 1;
+}
+
+.backButton:hover:not(:disabled),
+.nextButton:hover:not(:disabled) {
+  background-color: #cccccc;
+}
+
+.uploadButton {
+  background-color: #28a745;
+  color: white;
+  flex: 1;
+}
+
+.uploadButton:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.backButton:disabled,
+.nextButton:disabled,
+.uploadButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+  .uploadForm {
+    width: 94%;
+    right: 3%;
+    top: auto;
+    bottom: 10px;
+    z-index: 100;
+  }
+
+  .optionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .voiceRecorderContainer {
+    flex-direction: column;
+    height: auto;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .playTimeContainer {
+    width: 100%;
+  }
+
+  .playButton {
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .uploadForm {
+    width: 95%;
+    font-size: 0.75em;
+  }
+
+  .input,
+  .textarea {
+    height: auto;
+    padding: 6px;
+  }
+
+  .formFooter {
+    flex-direction: column;
+  }
+
+  .backButton,
+  .nextButton,
+  .uploadButton {
+    width: 100%;
+  }
+}
