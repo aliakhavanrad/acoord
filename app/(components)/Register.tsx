@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import { useAuth } from '@/app/(hooks)';
 import { mustMatch, isValidPhoneNumber, isValidPassword } from '@/app/(helpers)/validators';
 import styles from './Register.module.css';
+import modalStyles from './Modal.module.css';
 
 interface RegisterProps {
   onClose?: () => void;
@@ -100,7 +101,16 @@ export function RegisterModal({ onClose, onOpenLogin }: RegisterProps) {
   };
 
   return (
-    <div className={styles.modalForm}>
+    <div className={modalStyles.modalContent}>
+      <button
+        className={modalStyles.closeButton}
+        onClick={onClose}
+        aria-label="Close register modal"
+        type="button"
+      >
+        ✕
+      </button>
+      <div className={styles.modalForm}>
       <div>
         <div className={styles.textCenter}>
           <img src="/assets/Icons/Icon.png" width={50} height={50} alt="Icon" />
@@ -276,6 +286,7 @@ export function RegisterModal({ onClose, onOpenLogin }: RegisterProps) {
             )}
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

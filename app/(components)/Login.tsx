@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { useAuth } from "@/app/(hooks)";
 import styles from "./Login.module.css";
+import modalStyles from "./Modal.module.css";
 
 interface LoginProps {
     onClose?: () => void;
@@ -45,7 +46,16 @@ export function LoginModal({ onClose, onOpenRegister }: LoginProps) {
     };
 
     return (
-        <div className={styles.modalForm}>
+        <div className={modalStyles.modalContent}>
+            <button
+                className={modalStyles.closeButton}
+                onClick={onClose}
+                aria-label="Close login modal"
+                type="button"
+            >
+                ✕
+            </button>
+            <div className={styles.modalForm}>
             <div>
                 <div className={styles.textCenter}>
                     <img
@@ -159,6 +169,7 @@ export function LoginModal({ onClose, onOpenRegister }: LoginProps) {
                         )}
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     );

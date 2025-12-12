@@ -288,7 +288,14 @@ export default function MapComponent() {
 
             {/* Login Modal */}
             {showLoginModal && (
-                <div className={modalStyles.modalBackdrop}>
+                <div
+                    className={modalStyles.modalBackdrop}
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            closeLoginModal();
+                        }
+                    }}
+                >
                     <LoginModal
                         onClose={closeLoginModal}
                         onOpenRegister={openRegisterModal}
@@ -298,7 +305,14 @@ export default function MapComponent() {
 
             {/* Register Modal */}
             {showRegisterModal && (
-                <div className={modalStyles.modalBackdrop}>
+                <div
+                    className={modalStyles.modalBackdrop}
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            closeRegisterModal();
+                        }
+                    }}
+                >
                     <RegisterModal
                         onClose={closeRegisterModal}
                         onOpenLogin={handleRegisterSuccess}
