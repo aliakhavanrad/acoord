@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useAuth } from '../(hooks)';
-import styles from './Header.module.css';
-import { useRouter } from 'next/navigation';
+import { useAuth } from "../(hooks)";
+import styles from "./Header.module.css";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
     onSetFullExtent?: () => void;
@@ -11,12 +11,17 @@ interface HeaderProps {
     onOpenLoginModal?: () => void;
 }
 
-export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload, onOpenLoginModal }: HeaderProps) {
+export function Header({
+    onSetFullExtent,
+    onGoToUserLocation,
+    onActivateUpload,
+    onOpenLoginModal,
+}: HeaderProps) {
     const { isLoggedIn, logout } = useAuth();
     const router = useRouter();
 
     const openInNewTab = (url: string) => {
-        window.open(url, '_blank')?.focus();
+        window.open(url, "_blank")?.focus();
     };
 
     const handleSetFullExtent = () => {
@@ -30,7 +35,7 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload, 
     const handleLogout = () => {
         if (isLoggedIn()) {
             logout();
-            router.push('/');
+            router.push("/");
         }
     };
 
@@ -39,11 +44,11 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload, 
     };
 
     const handleHelp = () => {
-        router.push('/help');
+        router.push("/help");
     };
 
     const handleAbout = () => {
-        router.push('/about');
+        router.push("/about");
     };
 
     const handleActivateUpload = () => {
@@ -65,7 +70,9 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload, 
                     src="/assets/Icons/insta.png"
                     alt="Instagram"
                     onClick={() =>
-                        openInNewTab('https://www.instagram.com/audible_coordinates/?utm_medium=copy_link')
+                        openInNewTab(
+                            "https://www.instagram.com/audible_coordinates/?utm_medium=copy_link"
+                        )
                     }
                 />
 
@@ -96,7 +103,7 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload, 
                     alt="help"
                     onClick={handleHelp}
                 />
-
+                {/* 
                 {isLoggedIn() && (
                     <img
                         className={styles.headerImage}
@@ -131,7 +138,7 @@ export function Header({ onSetFullExtent, onGoToUserLocation, onActivateUpload, 
                         alt="logout"
                         onClick={handleLogout}
                     />
-                )}
+                )} */}
             </div>
         </div>
     );
