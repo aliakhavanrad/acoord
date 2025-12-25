@@ -2,13 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./About.module.css";
+import Image from "next/image";
+import aboutIcon from "@/public/assets/Icons/about.png";
 
 export default function About() {
     const router = useRouter();
-
-    const openInNewTab = (url: string) => {
-        window.open(url, "_blank")?.focus();
-    };
 
     const handleMainPageClick = () => {
         router.push("/");
@@ -16,20 +14,41 @@ export default function About() {
 
     return (
         <div className={styles.aboutContainer}>
-            <div className={styles.aboutHeader}>
-                <img
-                    id="acoord"
-                    className={styles.acoord}
-                    src="/assets/Icons/ACOORD.png"
-                    alt="ACOORD"
-                />
-                <img
-                    id="main-page"
-                    className={styles.mainPage}
-                    src="/assets/Icons/world.png"
-                    alt="Main page"
-                    onClick={handleMainPageClick}
-                />
+            <div
+                className={styles.aboutHeader}
+                style={{ backgroundImage: `url(${aboutIcon.src})` }}
+            >
+                <div
+                    className={"m-3 rounded position-relative " + styles.acoord}
+                >
+                    <Image
+                        id="acoord"
+                        src="/assets/Icons/ACOORD.png"
+                        alt="ACOORD"
+                        width={150}
+                        height={0}
+                        style={{
+                            height: "auto",
+                        }}
+                    />
+                </div>
+                <div
+                    className={
+                        "m-3 rounded position-relative " + styles.mainPage
+                    }
+                >
+                    <Image
+                        id="main-page"
+                        src="/assets/Icons/world.png"
+                        alt="Main page"
+                        onClick={handleMainPageClick}
+                        width={30}
+                        height={0}
+                        style={{
+                            height: "auto",
+                        }}
+                    />
+                </div>
             </div>
 
             <div className={styles.container}>

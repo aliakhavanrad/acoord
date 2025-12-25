@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import "ol/ol.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 :root {
 }
