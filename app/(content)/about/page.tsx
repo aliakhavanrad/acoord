@@ -1,4 +1,4 @@
-import About from "@/app/(components)/About";
+import About from "@/components/features/About";
 
 export const metadata = {
     title: "About - ACOORD",

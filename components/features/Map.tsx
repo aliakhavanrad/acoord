@@ -12,15 +12,15 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource, { VectorSourceEvent } from "ol/source/Vector";
 import Draw from "ol/interaction/Draw";
 import { Style, Icon } from "ol/style";
-import { useSound, useStyle, useSelect } from "../(hooks)";
-import { Voice } from "../(models)";
 import { PlayerPanel } from "./PlayerPanel";
-import { Header } from "./Header";
-import { Legend } from "./Legend";
 import LoginModal from "./Login";
 import RegisterModal from "./Register";
 import { UploadForm } from "./UploadForm";
-import modalStyles from "./Modal.module.css";
+import modalStyles from "../common/Modal.module.css";
+import { Voice } from "@/models";
+import { useSelect, useSound, useStyle } from "@/hooks";
+import { Header } from "../common/Header";
+import { Legend } from "../common/Legend";
 
 // Map constants
 const MAP_START_CENTER = [53, 33];
@@ -115,7 +115,7 @@ export default function MapComponent() {
         return new Draw({
             source: drawSource,
             type: "Point",
-            style: uploadStyle,
+            style: uploadStyle, // Maybe it can be pulsing
         });
     }, [drawSource]);
 

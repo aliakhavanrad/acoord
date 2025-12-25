@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { useAuth } from "@/app/(hooks)";
+
 import styles from "./Login.module.css";
-import modalStyles from "./Modal.module.css";
+import modalStyles from "../common/Modal.module.css";
+import { useAuth } from "@/hooks";
 
 interface LoginProps {
     onClose?: () => void;

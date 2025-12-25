@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef, FormEvent, ChangeEvent } from "react";
-import { useAuth } from "@/app/(hooks)";
+
 import styles from "./UploadForm.module.css";
+import { useAuth } from "@/hooks";
 
 interface UploadFormProps {
     clickedLocation: number[] | null;

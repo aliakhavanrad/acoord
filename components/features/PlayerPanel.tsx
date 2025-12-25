@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Voice } from "../(models)";
+
 import styles from "./PlayerPanel.module.css";
+import { Voice } from "@/models";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.acoord.ir";
 

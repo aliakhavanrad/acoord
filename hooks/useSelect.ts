@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import Select, { SelectEvent } from 'ol/interaction/Select';
-import Map from 'ol/Map';
-import { Voice } from '../(models)';
-import { Feature } from 'ol';
+import { useState, useCallback } from "react";
+import Select, { SelectEvent } from "ol/interaction/Select";
+import Map from "ol/Map";
+import { Feature } from "ol";
+import { Voice } from "@/models";
 
 export interface SelectEventCallback {
     (sound: Voice): void;
@@ -29,7 +29,7 @@ export const useSelect = () => {
         (myMap: Map, onSoundSelected?: SelectEventCallback) => {
             myMap.addInteraction(select);
 
-            select.on('select', (e: SelectEvent) => {
+            select.on("select", (e: SelectEvent) => {
                 const feature = e.target.getFeatures().getArray()[0];
 
                 if (!feature) {

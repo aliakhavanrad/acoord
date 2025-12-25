@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "../(hooks)";
+import { useAuth } from "@/hooks";
 import styles from "./Header.module.css";
 import { useRouter } from "next/navigation";
 

@@ -1,7 +1,7 @@
 "use client";
 
+import { User } from "@/models";
 import { useState, useCallback, useEffect } from "react";
-import { User } from "../(models)";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.acoord.ir";
 
@@ -96,7 +96,8 @@ export const useAuth = () => {
 
                 if (!response.ok) {
                     if (response.status === 406) {
-                        const message = "This username or phone number has been taken";
+                        const message =
+                            "This username or phone number has been taken";
                         setError(message);
                         throw new Error(message);
                     }

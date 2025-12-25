@@ -1,17 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import { Voice } from '../(models)';
+import { Voice } from "@/models";
+import { useState, useCallback } from "react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.acoord.ir';
-
-// export interface Voice {
-//     id: number;
-//     name: string;
-//     url?: string;
-//     accepted?: boolean;
-//     // [key: string]: any;
-// }
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.acoord.ir";
 
 export const useSound = () => {
     const [voices, setVoices] = useState<Voice[]>([]);
@@ -22,7 +14,9 @@ export const useSound = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${API_URL}/Playlist/GetAllAcceptedVoices`);
+            const response = await fetch(
+                `${API_URL}/Playlist/GetAllAcceptedVoices`
+            );
 
             if (!response.ok) {
                 throw new Error(`Failed to fetch voices: ${response.status}`);
@@ -32,7 +26,8 @@ export const useSound = () => {
             setVoices(data);
             return data;
         } catch (err) {
-            const message = err instanceof Error ? err.message : 'Failed to fetch voices';
+            const message =
+                err instanceof Error ? err.message : "Failed to fetch voices";
             setError(message);
             throw err;
         } finally {
@@ -44,7 +39,9 @@ export const useSound = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${API_URL}/Playlist/GetNotAcceptedVoices`);
+            const response = await fetch(
+                `${API_URL}/Playlist/GetNotAcceptedVoices`
+            );
 
             if (!response.ok) {
                 throw new Error(`Failed to fetch voices: ${response.status}`);
@@ -54,7 +51,8 @@ export const useSound = () => {
             setVoices(data);
             return data;
         } catch (err) {
-            const message = err instanceof Error ? err.message : 'Failed to fetch voices';
+            const message =
+                err instanceof Error ? err.message : "Failed to fetch voices";
             setError(message);
             throw err;
         } finally {

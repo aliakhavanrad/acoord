@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { useAuth } from "@/app/(hooks)";
 import {
     mustMatch,
     isValidPhoneNumber,
     isValidPassword,
-} from "@/app/(helpers)/validators";
+} from "@/helpers/validators";
 import styles from "./Register.module.css";
-import modalStyles from "./Modal.module.css";
+import modalStyles from "../common/Modal.module.css";
+import { useAuth } from "@/hooks";
 
 interface RegisterProps {
     onClose?: () => void;
